@@ -5,12 +5,16 @@ import { EmailUser } from "./entities/EmailUser";
 import { User } from "./entities/User";
 
 export const dataSource = new DataSource({
-  type: "sqlite",
-  database: "src/database/database.sqlite",
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "postgres",
+  password: "admin",
+  database: "database",
   synchronize: true,
   logging: false,
   entities: [User, Email, EmailUser],
-  migrations: ["./src/migration/*.ts"],
+  migrations: ["./migration/*.{ts,js}"],
   subscribers: [],
 });
 

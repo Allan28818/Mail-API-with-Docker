@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
-import { dataSource } from "../data-source";
-import { Email } from "../entities/Email";
-import { EmailUser } from "../entities/EmailUser";
 import { AppError } from "../errors/AppError";
 import { CreateEmailService } from "../services/CreateEmailService";
 
@@ -37,7 +34,7 @@ class CreateEmailController {
 
     const createEmailService = new CreateEmailService();
 
-    const email = createEmailService.create({
+    const email = await createEmailService.create({
       senderData,
       receiverData,
       body,
