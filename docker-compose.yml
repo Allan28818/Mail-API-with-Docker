@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  server:
+    build: .
+    volumes:
+      - ./:/src
+      - 3333:3000
+    env_file:
+      - .env
+    links:
+      - database
+    command: ["yarn", "start"]
+  database:
+    image: postgres:9.6-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./src/database:/var/lib/postgresql/data
+
+volumes:
+  database-data: {}
