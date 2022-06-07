@@ -1,0 +1,39 @@
+-- CreateTable
+CREATE TABLE "email_user" (
+    "id" VARCHAR NOT NULL,
+    "creatorId" VARCHAR NOT NULL,
+    "emailId" VARCHAR NOT NULL,
+    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "PK_25f2e7a5a3fc2c9119ecfa40493" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "emails" (
+    "title" VARCHAR NOT NULL,
+    "body" VARCHAR NOT NULL,
+    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "id" VARCHAR NOT NULL,
+    "creatorId" VARCHAR NOT NULL,
+    "senderData" JSONB NOT NULL,
+    "receiverData" JSONB NOT NULL,
+
+    CONSTRAINT "PK_a54dcebef8d05dca7e839749571" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "users" (
+    "username" VARCHAR NOT NULL,
+    "email" VARCHAR NOT NULL,
+    "password" VARCHAR NOT NULL,
+    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "id" VARCHAR NOT NULL,
+
+    CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "email_user" ADD CONSTRAINT "FK_19eb44ed0bae9d968c7a0c75011" FOREIGN KEY ("emailId") REFERENCES "emails"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "email_user" ADD CONSTRAINT "FK_f9572ab32d1b78a2ecc8165f5a5" FOREIGN KEY ("creatorId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
