@@ -1,22 +1,22 @@
-version: "3"
+version: "3.7"
 
 services:
+  database:
+    image: postgres:14.3-alpine
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_DB=database"
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - "POSTGRES_PASSWORD=admin"
+      - "POSTGRES_USER=postgres"
+    ports:
+      - "5432:5432"
   server:
     build: .
-    volumes:
-      - ./:/src
-      - 3333:3000
-    env_file:
-      - .env
-    links:
+    depends_on:
       - database
-    command: ["yarn", "start"]
-  database:
-    image: postgres:9.6-alpine
     ports:
-      - 5432:5432
+      - "333:3333"
     volumes:
-      - ./src/database:/var/lib/postgresql/data
-
-volumes:
-  database-data: {}
+      - ./:./

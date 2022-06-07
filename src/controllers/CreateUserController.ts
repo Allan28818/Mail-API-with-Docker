@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
-import { dataSource } from "../data-source";
-import { User } from "../entities/User";
 import { AppError } from "../errors/AppError";
 import { CreateUserService } from "../services/CreateUserService";
 
