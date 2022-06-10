@@ -1,8 +1,16 @@
 1
 /var/lib/postgresql/data
+<<<<<<< HEAD
+1654803437
+5432
+/var/run/postgresql
+*
+   114466         0
+=======
 1654634085
 5432
 /var/run/postgresql
 *
   2218165         0
+>>>>>>> feat/prisma
 ready   

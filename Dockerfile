@@ -1,12 +1,11 @@
 FROM node:16
 
-RUN mkdir /src
+RUN mkdir /node-api
 
-WORKDIR /src
+WORKDIR /node-api
 
 COPY package*.json .
 COPY .env .
-COPY /prisma .
 
 RUN yarn 
 
