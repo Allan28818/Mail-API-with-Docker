@@ -1,8 +1,11 @@
 FROM node:16
 
-WORKDIR /usr/src
+RUN mkdir /node-api
 
-COPY package*.json ./
+WORKDIR /node-api
+
+COPY package*.json .
+COPY .env .
 
 RUN yarn 
 

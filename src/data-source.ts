@@ -9,6 +9,7 @@ export const dataSource = new DataSource({
   host: "localhost",
   port: 5432,
   username: "postgres",
+  url: "postgresql://postgres:admin@localhost:5432/database?schema=public",
   password: "admin",
   database: "database",
   synchronize: true,
