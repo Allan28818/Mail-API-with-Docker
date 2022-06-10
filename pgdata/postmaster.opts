@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 /usr/lib/postgresql/14/bin/postgres
+=======
+/usr/local/bin/postgres
+>>>>>>> feat/prisma

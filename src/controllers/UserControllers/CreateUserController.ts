@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
+<<<<<<< HEAD:src/controllers/UserControllers/CreateUserController.ts
 import { dataSource } from "../../data-source";
 import { User } from "../../entities/User";
 import { AppError } from "../../errors/AppError";
 import { CreateUserService } from "../../services/UserServices/CreateUserService";
+=======
+import { AppError } from "../errors/AppError";
+import { CreateUserService } from "../services/CreateUserService";
+>>>>>>> feat/prisma:src/controllers/CreateUserController.ts
 
 class CreateUserController {
   async handle(req: Request, res: Response) {

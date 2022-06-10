@@ -1,6 +1,10 @@
+<<<<<<< HEAD:src/services/EmailServices/CreateEmailService.ts
 import { dataSource } from "../../data-source";
 import { Email } from "../../entities/Email";
 import { EmailUser } from "../../entities/EmailUser";
+=======
+import { prisma } from "../client";
+>>>>>>> feat/prisma:src/services/CreateEmailService.ts
 
 interface EmailProps {
   senderData: {
@@ -19,25 +23,24 @@ class CreateEmailService {
   async create(props: EmailProps) {
     const { senderData, receiverData, title, body } = props;
 
-    const emailsRepository = dataSource.getRepository(Email);
-    const emailUserRepository = dataSource.getRepository(EmailUser);
-    const email = new Email();
+    const emailResponse = await prisma.emails.create({
+      data: {
+        creatorId: senderData.id,
+        senderData,
+        receiverData,
+        title,
+        body,
+      },
+    });
 
-    email.creatorId = senderData.id;
-    email.senderData = senderData;
-    email.receiverData = receiverData;
-    email.title = title;
-    email.body = body;
+    await prisma.email_user.create({
+      data: {
+        creatorId: emailResponse.creatorId,
+        emailId: emailResponse.id,
+      },
+    });
 
-    const emailUser = new EmailUser();
-
-    const emailCreationResponse = await emailsRepository.save(email);
-
-    emailUser.creatorId = emailCreationResponse.creatorId;
-    emailUser.emailId = emailCreationResponse.id;
-    await emailUserRepository.save(emailUser);
-
-    return email;
+    return emailResponse;
   }
 }
 
